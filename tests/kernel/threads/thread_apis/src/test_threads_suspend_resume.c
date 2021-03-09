@@ -27,6 +27,18 @@ static void threads_suspend_resume(int prio)
 	k_tid_t tid = k_thread_create(&tdata, tstack, STACK_SIZE,
 				      thread_entry, NULL, NULL, NULL,
 				      create_prio, K_USER, K_NO_WAIT);
+	/* checkpoint: resume an unsuspended thread has no effect */
+	k_thread_resume(tid);
+	k_msleep(100);
+	zassert_true(last_prio == create_prio, NULL);
+	k_thread_abort(tid);
+
+	last_prio = prio;
+	create_prio = last_prio + 1;
+
+	tid = k_thread_create(&tdata, tstack, STACK_SIZE,
+				      thread_entry, NULL, NULL, NULL,
+				      create_prio, K_USER, K_NO_WAIT);
 	/* checkpoint: suspend current thread */
 	k_thread_suspend(tid);
 	k_msleep(100);

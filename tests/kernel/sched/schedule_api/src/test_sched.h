@@ -46,5 +46,12 @@ void test_priority_scheduling(void);
 void test_wakeup_expired_timer_thread(void);
 void test_user_k_wakeup(void);
 void test_user_k_is_preempt(void);
+void test_k_thread_suspend_init_null(void);
+void test_k_thread_resume_init_null(void);
+void test_k_thread_priority_get_init_null(void);
+void test_k_thread_priority_set_init_null(void);
+void test_k_thread_priority_set_overmax(void);
+void test_k_thread_priority_set_upgrade(void);
+void test_k_wakeup_init_null(void);
 
 #endif /* __TEST_SCHED_H__ */

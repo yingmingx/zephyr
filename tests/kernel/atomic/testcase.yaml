@@ -1,0 +1,3 @@
+tests:
+  kernel.atomic.threads_access:
+    tags: kernel
